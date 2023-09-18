@@ -6,11 +6,11 @@ const bodyParser = require('body-parser');
 const app = express();
 const hbs = require('express-handlebars');
 require('dotenv').config();
+const userRegEx = new RegExp(process.env.USER_REGEX);
+const passwordRegEx = new RegExp(process.env.PASSWORD_REGEX);
 
-//body parser
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
-app.use('cors');
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 //Db Connection
 
@@ -26,7 +26,8 @@ app.get('/', (req, res) => {
 });
 
 app.post('/test', (req, res) => {
-    if(process.env.USER_REGEX.test(req.body.username)){
+    console.log("Testing");
+    if(userRegEx.test(req.body.username) && passwordRegEx.test(req.body.password)){
         console.log("Poggers")
     } else {
         console.log("Fuck you")
