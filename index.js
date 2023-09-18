@@ -2,14 +2,15 @@
 const express = require('express');
 const mysql = require('mysql');
 const app = express();
+require('dotenv').config();
 
 //Db Connection
 
 const db = mysql.createConnection({
-    host: 'd121755.mysql.zonevs.eu',
-    user: 'd121755_ervin',
-    password: 'MustMees123',
-    database: 'd121755_vocotoo',
+    host: DB_HOST,
+    user: DB_USER,
+    password: DB_PASSWORD,
+    database: DB_DATABASE,
 });
 
 app.get('/', (req, res) => {
