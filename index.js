@@ -9,6 +9,8 @@ const hbs = require('express-handlebars');
 require('dotenv').config();
 const regex = require('./utility/regex_configuration');
 
+const path = require("path");
+
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -37,11 +39,25 @@ app.post('/test', (req, res) => {
     } else {
         console.log("Test username and/or password are invalid")
     }
-}); 
+});
+
+app.set('views',path.join(__dirname,'views'))
+app.set('view engine','hbs')
+app.engine('hbs',hbs.engine({
+    extname:'hbs',
+    defaultLayout:'main',
+    layoutsDir:__dirname+'/views/layouts/',
+}))
+app.use(express.static('public'))
 
 //routes
 
 const userRoutes = require('./routes/user');
+
+//routes
+
+const userRoutes = require('./routes/user');
+
 
 //route setup
 app.use('/', userRoutes);

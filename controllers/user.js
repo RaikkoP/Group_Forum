@@ -2,6 +2,11 @@ const User = require("../models/users.model");
 
 
 module.exports = {
+
+    showRegistration:(req, res) => {
+                res.render('register')
+    },
+
     registerUser: async (req, res) => {
         const userData = new User({
             username: req.body.username,
@@ -19,5 +24,13 @@ module.exports = {
                 console.log(data);
             }
         })
+
+    },
+    showLogin: (req,res)=>{
+        res.render('login')
+    },
+    getForum: (req,res)=>{
+        res.render('home')
+
     }
 }
