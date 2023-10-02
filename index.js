@@ -54,10 +54,6 @@ app.use(express.static('public'))
 
 const userRoutes = require('./routes/user');
 
-//routes
-
-const userRoutes = require('./routes/user');
-
 
 //route setup
 app.use('/', userRoutes);
