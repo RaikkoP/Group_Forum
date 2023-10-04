@@ -46,6 +46,7 @@ User.registerNew = (user, result) => {
   email = '${user.email}'`;
   //Username check
   con.query(queryCheckUsername, (err, res) => {
+    console.log(res);
     if (res.length > 0) {
       console.log("That username or email is taken");
       result(err, null);
