@@ -20,7 +20,8 @@ module.exports = {
                 })
             } else {
                 req.session.authenticated = true;
-                console.log(data);
+                console.log(data.username);
+                console.log(data.password);
             }
         })
     },

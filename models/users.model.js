@@ -20,9 +20,13 @@ User.login = (user, result) => {
   username = '${user.username}'`;
   //SQL COMMAND
   con.query(queryFindUser, (err, res) => {
+    if (res.length == 0){
+      result ('User isnt real', res);
+      return;
+    }
     if (res.length > 0 && bcrypt.compare(user.password, res[0].password)) {
       if (err) {
-        result(err, data);
+        result(err, res);
         return;
       }
       result(null, { id: res.insertId, ...user });
