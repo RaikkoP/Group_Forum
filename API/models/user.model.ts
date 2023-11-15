@@ -43,9 +43,9 @@ class User {
 
     //See if user with this username exists
     let queryFindUser = `SELECT * FROM users WHERE
-  username = '${user.username}'`;
+  username = ?`;
     //SQL COMMAND
-    db.query(queryFindUser, async (err, res) => {
+    db.query(queryFindUser, [user.username], async (err, res) => {
       if (res.length == 0) {
         result(err, res);
         return;
@@ -74,21 +74,21 @@ class User {
     }
     //Check if username or email exists in db
     let queryCheckUsername = `SELECT username FROM users
-WHERE username = '${user.username}' or email = '${user.email}'`;
+WHERE username = ? or email = ?`;
     //Add user to database if all is secure and well, save password as HASH NOT NORMAL PASSWORD
     let queryAddUser = `INSERT INTO users SET
-username = '${user.username}',
-password = '${bcrypt.hashSync(user.password, bcrypt.genSaltSync(10))}',
-email = '${user.email}'`;
+username = '?',
+password = ?,
+email = ?`;
     //Username check
-    db.query(queryCheckUsername, (err, res) => {
+    db.query(queryCheckUsername, [user.username, user.email], (err, res) => {
       console.log(res);
       if (res.length > 0) {
         console.log("That username or email is taken");
         result(err, null);
         return;
       }
-      db.query(queryAddUser, (err, res) => {
+      db.query(queryAddUser, [user.username, bcrypt.hashSync(user.password, bcrypt.genSaltSync(10)), user.email], (err, res) => {
         if (err) {
           console.log("error: ", err);
           result(err, null);
