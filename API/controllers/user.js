@@ -14,7 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const user_model_1 = __importDefault(require("../models/user.model"));
 const userController = {
-    showRegistration: (req, res) => { },
     loginUser: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const userData = new user_model_1.default({
             username: req.body.username,
@@ -33,6 +32,7 @@ const userController = {
         });
     }),
     registerUser: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        console.log(req.body, "From registerUser");
         const userData = new user_model_1.default({
             username: req.body.username,
             password: req.body.password,
@@ -49,7 +49,5 @@ const userController = {
             }
         });
     }),
-    showLogin: () => console.log("showLogin"),
-    getForum: () => console.log("getForum"),
 };
 exports.default = userController;

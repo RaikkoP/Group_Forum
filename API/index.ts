@@ -13,6 +13,13 @@ app.use(bodyParser.json());
 
 //ADD NEW SESSION WITH JWT
 
+app.get("/", (req, res) => {
+  console.log("Connected");
+  res.send("Hello, World!");
+});
+
+
+
 // //routes
 // import userRoutes from './routes/user';
 import registerRoutes from './routes/register';

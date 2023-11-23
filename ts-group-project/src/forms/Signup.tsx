@@ -24,11 +24,34 @@ const SignUpForm = () => {
         setPassword(event.currentTarget.value);
         console.log(password);
     }
+    let axiosConfig = {
+        headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            "Access-Control-Allow-Origin": "*",
+        }
+       };
+    const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        axios.post('http://localhost:4000/register', {
+            username: username,
+            email: email,
+            password: password
+        }, axiosConfig)
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error){
+            console.log(error);
+        })
+        event.preventDefault();
+        setUsername('');
+        setEmail('');
+        setPassword('');
+    }
 
     return(
         <div>
             <div>
-                <form>
+                <form onSubmit={handleFormSubmit}>
                     <FormInput onChange={handleUsernameChange}  name="username" type="text" label="Username" placeholder="Username"/>
                     <FormInput onChange={handleEmailChange} name="email" type="text" label="Email" placeholder="Example@Email.com"/>
                     <FormInput onChange={handlePasswordChange} name="password" type="password" label="Password" placeholder="***********"/>
