@@ -6,10 +6,10 @@ import userController from '../controllers/user';
 
 
 router.post('/register', userController.registerUser);
-router.get('/register',userController.showRegistration);
-router.get('/login',userController.showLogin);
-router.get('/home',userController.getForum);
-router.post('/login',userController.loginUser);
+router.get('/register', userController.showRegistration);
+router.get('/login', userController.showLogin);
+router.get('/home', userController.getForum);
+router.post('/login', userController.loginUser);
 router.post('/', userController.registerUser);
 
 

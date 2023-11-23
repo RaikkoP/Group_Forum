@@ -1,16 +1,18 @@
 
 
 interface formProps {
+    type: string;
+    name: string;
     label: string;
     placeholder: string;
 }
 
-const FormInput = ({label, placeholder}: formProps) => {
+const FormInput = ({type, name, label, placeholder}: formProps) => {
 
     return (
         <div>
             <label>{label}</label>
-            <input type="text" placeholder={placeholder}></input>
+            <input type={type} name={name} placeholder={placeholder}></input>
         </div>
     )
 };

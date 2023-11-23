@@ -6,8 +6,10 @@ const SignUpForm = () => {
         <div>
             <div>
                 <form>
-                    <FormInput label="Username" placeholder="Username"/>
-                    <FormInput label="Email" placeholder="Example@Email.com"/>
+                    <FormInput name="username" type="text" label="Username" placeholder="Username"/>
+                    <FormInput name="email" type="text" label="Email" placeholder="Example@Email.com"/>
+                    <FormInput name="password" type="password" label="Password" placeholder="***********"/>
+                    <FormInput name="cPassword" type="password" label="Confirm Password" placeholder="***********"/>
                     <FormButton>
                         <b>Sign up</b>
                     </FormButton>
