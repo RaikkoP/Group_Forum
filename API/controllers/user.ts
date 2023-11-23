@@ -29,6 +29,7 @@ const userController = {
   },
 
   registerUser: async (req: Request, res: Response) => {
+    console.log(req.body, "From registerUser");
     const userData = new User({
       username: req.body.username,
       password: req.body.password,
