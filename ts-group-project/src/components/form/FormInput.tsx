@@ -5,14 +5,17 @@ interface formProps {
     name: string;
     label: string;
     placeholder: string;
+    onChange: Function;
 }
 
-const FormInput = ({type, name, label, placeholder}: formProps) => {
+const FormInput = ({type, name, label, placeholder, onChange}: formProps) => {
 
     return (
         <div>
-            <label>{label}</label>
-            <input type={type} name={name} placeholder={placeholder}></input>
+            <label>
+                {label}
+                <input onChange={(e) => onChange(e)} type={type} name={name} placeholder={placeholder}></input>
+            </label>
         </div>
     )
 };

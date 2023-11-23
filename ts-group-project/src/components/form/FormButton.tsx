@@ -1,11 +1,12 @@
 interface buttonProps {
     children: JSX.Element | string;
+    type: "button" | "submit" | "reset";
 }
 
-const FormButton = ({children}: buttonProps) => {
+const FormButton = ({children, type}: buttonProps) => {
     return( 
         <div>
-            <button>
+            <button type={type}>
                 {children}
             </button>
         </div>
