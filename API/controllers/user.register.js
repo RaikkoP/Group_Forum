@@ -12,33 +12,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const user_model_1 = __importDefault(require("../models/user.model"));
+const user_register_model_1 = __importDefault(require("../models/user.register.model"));
 const userController = {
-    loginUser: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const userData = new user_model_1.default({
-            username: req.body.username,
-            password: req.body.password,
-        });
-        user_model_1.default.login(userData, (err, data) => {
-            if (err) {
-                res.status(500).send({
-                    message: "Error loging in",
-                });
-            }
-            if (data) {
-                console.log(data.username);
-                console.log(data.password);
-            }
-        });
-    }),
     registerUser: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         console.log(req.body, "From registerUser");
-        const userData = new user_model_1.default({
+        const userData = new user_register_model_1.default({
             username: req.body.username,
             password: req.body.password,
             email: req.body.email,
         });
-        user_model_1.default.register(userData, (err, data) => {
+        user_register_model_1.default.register(userData, (err, data) => {
             if (err) {
                 res.status(500).send({
                     message: "Error making new account",

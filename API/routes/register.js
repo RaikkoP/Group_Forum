@@ -7,6 +7,6 @@ const express = require("express");
 const router = express.Router();
 const body_parser_1 = __importDefault(require("body-parser"));
 router.use(body_parser_1.default.json());
-const user_1 = __importDefault(require("../controllers/user"));
-router.post('/', user_1.default.registerUser);
+const user_register_1 = __importDefault(require("../controllers/user.register"));
+router.post('/', user_register_1.default.registerUser);
 exports.default = router;
