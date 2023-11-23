@@ -1,4 +1,3 @@
-import { BodyParser } from 'body-parser';
 import { Request, Response } from 'express';
 import User from '../models/user.model';
 
@@ -10,9 +9,7 @@ interface UserInterface {
 }
 
 const userController = {
-   showRegistration: (req: Request, res: Response) => {},
-
-   loginUser: async (req: Request, res: Response) => {
+  loginUser: async (req: Request, res: Response) => {
     const userData = new User({
       username: req.body.username,
       password: req.body.password,
@@ -31,7 +28,7 @@ const userController = {
     });
   },
 
-   registerUser: async (req: Request, res: Response) => {
+  registerUser: async (req: Request, res: Response) => {
     const userData = new User({
       username: req.body.username,
       password: req.body.password,
@@ -48,8 +45,6 @@ const userController = {
       }
     });
   },
-  showLogin: () => console.log("showLogin"),
-  getForum: () => console.log("getForum"),
 };
 
 export default userController;
