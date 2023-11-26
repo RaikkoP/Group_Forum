@@ -6,6 +6,8 @@ function passRegex(username:string, password:string){
         !regex.passwordRegEx.test(password)
     ) {
         return false;
+    } else {
+        return true;
     }
 }
 export default passRegex;
