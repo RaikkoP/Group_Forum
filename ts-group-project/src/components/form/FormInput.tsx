@@ -1,4 +1,4 @@
-
+import './../../style/style.css'
 
 interface formProps {
     type: string;
