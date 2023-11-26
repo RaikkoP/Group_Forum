@@ -24,7 +24,7 @@ const SignUpForm = () => {
         setPassword(event.currentTarget.value);
         console.log(password);
     }
-    let axiosConfig = {
+    const axiosConfig = {
         headers: {
             'Content-Type': 'application/json;charset=UTF-8',
             "Access-Control-Allow-Origin": "*",
@@ -42,10 +42,10 @@ const SignUpForm = () => {
         .catch(function (error){
             console.log(error);
         })
-        event.preventDefault();
         setUsername('');
         setEmail('');
         setPassword('');
+        event.preventDefault();
     }
 
     return(

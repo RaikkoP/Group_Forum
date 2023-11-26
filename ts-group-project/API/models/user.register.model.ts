@@ -10,16 +10,12 @@ interface UserInterface {
   id?: number;
 }
 
-interface ErrorInterface {
-  message: string | MysqlError ;
-}
-
 class User {
   username: string;
   password: string;
   email: string | undefined;
 
-  constructor({ username, password, email, id }: UserInterface) {
+  constructor({ username, password, email }: UserInterface) {
     this.username = username;
     this.password = password;
     this.email = email;
@@ -27,11 +23,11 @@ class User {
   static register(user: UserInterface, result: (error: MysqlError | string | null, data: UserInterface | null) => void) {
     //Check inputs with regex
     console.log(user.username, user.password);
-    // if (!passRegex(user.username, user.password)) {
-    //   console.log('Regex Issue');
-    //   result("Failed to login", null)
-    //   return;
-    // }
+    if (!passRegex(user.username, user.password)) {
+      console.log('Regex Issue');
+      result("Failed to login", null)
+      return;
+    }
     //Username check
     //Check if username or email exists in db
     db.query('SELECT username FROM users WHERE username = ? or email = ?', [user.username, user.email], (err, res) => {

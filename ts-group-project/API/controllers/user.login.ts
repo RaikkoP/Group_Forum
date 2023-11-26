@@ -1,13 +1,6 @@
 import { Request, Response } from 'express';
 import User from '../models/user.login.model';
 
-interface UserInterface {
-  username: string;
-  password: string;
-  email?: string;
-  id?: number;
-}
-
 const userController = {
   loginUser: async (req: Request, res: Response) => {
     const userData = new User({

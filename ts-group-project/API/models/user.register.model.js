@@ -4,9 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = __importDefault(require("../utility/database"));
+const regex_check_1 = __importDefault(require("../utility/regex_check"));
 const bcrypt = require("bcryptjs");
 class User {
-    constructor({ username, password, email, id }) {
+    constructor({ username, password, email }) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -14,11 +15,11 @@ class User {
     static register(user, result) {
         //Check inputs with regex
         console.log(user.username, user.password);
-        // if (!passRegex(user.username, user.password)) {
-        //   console.log('Regex Issue');
-        //   result("Failed to login", null)
-        //   return;
-        // }
+        if (!(0, regex_check_1.default)(user.username, user.password)) {
+            console.log('Regex Issue');
+            result("Failed to login", null);
+            return;
+        }
         //Username check
         //Check if username or email exists in db
         database_1.default.query('SELECT username FROM users WHERE username = ? or email = ?', [user.username, user.email], (err, res) => {

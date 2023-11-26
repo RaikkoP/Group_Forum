@@ -16,7 +16,7 @@ const database_1 = __importDefault(require("../utility/database"));
 const regex_check_1 = __importDefault(require("../utility/regex_check"));
 const bcrypt = require("bcryptjs");
 class User {
-    constructor({ username, password, email, id }) {
+    constructor({ username, password, email }) {
         this.username = username;
         this.password = password;
         this.email = email;

@@ -8,7 +8,5 @@ const router = express.Router();
 const body_parser_1 = __importDefault(require("body-parser"));
 router.use(body_parser_1.default.text());
 const user_login_1 = __importDefault(require("../controllers/user.login"));
-const user_register_1 = __importDefault(require("../controllers/user.register"));
-router.post('/login', user_login_1.default.loginUser);
-router.post('/', user_register_1.default.registerUser);
+router.post('/', user_login_1.default.loginUser);
 exports.default = router;

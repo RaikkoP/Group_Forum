@@ -28,6 +28,7 @@ const userController = {
                 });
             }
             else {
+                //Create SessionID and make session cookie!
                 console.log(data);
             }
         });

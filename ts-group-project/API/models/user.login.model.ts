@@ -19,7 +19,7 @@ class User {
   password: string;
   email: string | undefined;
 
-  constructor({ username, password, email, id }: UserInterface) {
+  constructor({ username, password, email}: UserInterface) {
     this.username = username;
     this.password = password;
     this.email = email;

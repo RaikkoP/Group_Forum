@@ -1,12 +1,6 @@
 import { Request, Response } from 'express';
 import User from '../models/user.register.model';
 
-interface UserInterface {
-  username: string;
-  password: string;
-  email?: string;
-  id?: number;
-}
 
 const userController = {
   registerUser: async (req: Request, res: Response) => {
@@ -23,6 +17,7 @@ const userController = {
           message: "Error making new account",
         });
       } else {
+        //Create SessionID and make session cookie!
         console.log(data);
       }
     });
