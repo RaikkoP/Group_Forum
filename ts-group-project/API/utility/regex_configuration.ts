@@ -1,9 +1,9 @@
 //require environment file
-import dotenv from 'dotenv';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require("dotenv").config();
 
-dotenv.config();
 //create regular expressions for username and password
-const userRegEx: RegExp = new RegExp(process.env.USER_REGEX || "");
+const userRegEx: RegExp = new RegExp(process.env.USERNAME_REGEX || "");
 const passwordRegEx: RegExp = new RegExp(process.env.PASSWORD_REGEX || "");
 
 //export regular expressions

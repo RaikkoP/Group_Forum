@@ -1,12 +1,36 @@
 import FormInput from "../components/form/FormInput";
 import FormButton from "../components/form/FormButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+    
+    useEffect(() => {
+        const axiosConfig = {
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+            }
+        };
+        axios.get('http://localhost:4000/authentication/userData', axiosConfig)
+        .then(function (response) {
+            console.log(response);
+            if(response.data.valid){
+                navigate('/');
+            } else {
+                navigate('/login');
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+    }, [navigate])
+
 
     const handleUsernameChange = (event: React.FormEvent<HTMLInputElement>) => {
         event.preventDefault();
@@ -19,24 +43,28 @@ const LoginForm = () => {
         console.log(password);
     };
     const axiosConfig = {
+        withCredentials: true,
         headers: {
             'Content-Type': 'application/json;charset=UTF-8',
-            "Access-Control-Allow-Origin": "*",
         }
     };
     const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        axios.post('http://localhost:3000/login', {
+        axios.post('http://localhost:4000/authentication/login', {
             username: username,
             password: password,
         }, axiosConfig)
         .then(function (response) {
-            console.log(response.data);
+            if(response.data.Login){
+                navigate('/');
+            } else {
+                alert("No record");
+            }
+            setPassword('');
+            setUsername('');
         })
         .catch(function (error) {
             console.log(error);
         })
-        setPassword('');
-        setUsername('');
         event.preventDefault();
     }
 
@@ -44,7 +72,7 @@ const LoginForm = () => {
         <div>
             <div>
                 <form onSubmit={handleFormSubmit}>
-                    <FormInput onChange={handleUsernameChange}  name="username_email" type="text" label="Username or Email" placeholder="example@gmail.com"/>
+                    <FormInput onChange={handleUsernameChange}  name="username" type="text" label="Username" placeholder="Username"/>
                     <FormInput onChange={handlePasswordChange} name="password" type="password" label="Password" placeholder="***********"/>
                     <FormButton type="submit">
                         <b>Log-in</b>

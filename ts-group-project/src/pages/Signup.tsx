@@ -2,12 +2,14 @@ import FormInput from "../components/form/FormInput";
 import FormButton from "../components/form/FormButton";
 import axios from 'axios';
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SignUpForm = () => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
+    const navigate = useNavigate();
 
     const handleUsernameChange = (event: React.FormEvent<HTMLInputElement>) => {
         event.preventDefault();
@@ -25,26 +27,31 @@ const SignUpForm = () => {
         console.log(password);
     }
     const axiosConfig = {
+        withCredentials: true,
         headers: {
             'Content-Type': 'application/json;charset=UTF-8',
-            "Access-Control-Allow-Origin": "*",
         }
-       };
+    };
     const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        axios.post('http://localhost:4000/register', {
+        axios.post('http://localhost:4000/authentication/register', {
             username: username,
             email: email,
             password: password
         }, axiosConfig)
         .then(function (response) {
             console.log(response);
+            if(response.data.Registered){
+                navigate('/login');
+            } else {
+                alert("No record");
+            }
+            setUsername('');
+            setEmail('');
+            setPassword('');
         })
         .catch(function (error){
             console.log(error);
         })
-        setUsername('');
-        setEmail('');
-        setPassword('');
         event.preventDefault();
     }
 

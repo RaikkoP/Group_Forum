@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@types/express-session": "^1.17.10",
-    "express-session": "^1.17.3"
-  }
-}

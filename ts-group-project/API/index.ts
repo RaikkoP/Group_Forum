@@ -1,46 +1,36 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-import express, { Application } from "express";
+import express from "express";
 import cors from "cors";
-import bodyParser from "body-parser";
-const session = require('express-session');
-require("dotenv").config();
+import session from 'express-session';
+import dotenv from 'dotenv'; 
+dotenv.config();
+const app = express();
 
-// App setup
-const app: Application = express();
-app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-//Session setup
-//ADD NEW SESSION WITH JWT
-app.use(session({
-  secret: process.env.SECRET_KEYS,
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    //Set max age of cookie to 5 mintues
-    maxAge: 300000,
-    sameSite: true,
-    //Later when hosted on HTTPS website
-    //secure: true,
-  }
+//Body parser
+app.use(express.json());
+
+// Cross origin setup
+app.use(cors({
+  origin: 'http://localhost:5173', 
+  credentials: true,
 }));
 
-// Test
-app.get("/", (req, res) => {
-  console.log("Connected");
-  res.send("Hello, World!");
-});
+//Session setup
+//ADD NEW SESSION
+app.use(session({
+  secret: process.env.SECRET_KEYS || "secret",
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false, maxAge: 24 * 60 * 60 * 1000 } 
+}));
 
 // Import routes 
 // import userRoutes from './routes/user';
-import registerRoutes from './routes/register';
-import loginRoutes from './routes/login';
+import authentication from './routes/authentication';
+
 
 // Route setup
 // app.use('/', userRoutes);
-app.use('/register', registerRoutes);
-app.use('/login', loginRoutes);
-
+app.use('/authentication', authentication);
 
 app.listen(4000, () => {
   console.log("Listening on port 4000");
