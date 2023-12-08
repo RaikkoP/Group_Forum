@@ -41,7 +41,8 @@ const LoginForm = () => {
     }
 
     return(
-        <div>
+        <main>
+            <h1>Log in</h1>
             <div>
                 <form onSubmit={handleFormSubmit}>
                     <FormInput onChange={handleUsernameChange}  name="username_email" type="text" label="Username or Email" placeholder="example@gmail.com"/>
@@ -54,7 +55,7 @@ const LoginForm = () => {
             <div>
                 <p>Don't have a account? <a href="/register"><b>Sign up</b></a></p>
             </div>
-        </div>
+        </main>
     )
 }
 
