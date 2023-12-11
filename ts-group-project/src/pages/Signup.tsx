@@ -56,7 +56,8 @@ const SignUpForm = () => {
     }
 
     return(
-        <div>
+        <main>
+            <h1>Sign up</h1>
             <div>
                 <form onSubmit={handleFormSubmit}>
                     <FormInput onChange={handleUsernameChange}  name="username" type="text" label="Username" placeholder="Username"/>
@@ -70,7 +71,7 @@ const SignUpForm = () => {
             <div>
                 <p>Already have a account? <a href="/login"><b>Sign in</b></a></p>
             </div>
-        </div>
+        </main>
     )
 }
 

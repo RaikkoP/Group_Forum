@@ -69,7 +69,8 @@ const LoginForm = () => {
     }
 
     return(
-        <div>
+        <main>
+            <h1>Log in</h1>
             <div>
                 <form onSubmit={handleFormSubmit}>
                     <FormInput onChange={handleUsernameChange}  name="username" type="text" label="Username" placeholder="Username"/>
@@ -82,7 +83,7 @@ const LoginForm = () => {
             <div>
                 <p>Don't have a account? <a href="/register"><b>Sign up</b></a></p>
             </div>
-        </div>
+        </main>
     )
 }
 
