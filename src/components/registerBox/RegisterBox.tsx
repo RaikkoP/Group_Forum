@@ -1,15 +1,14 @@
-import FormInput from "../components/form/FormInput";
-import FormButton from "../components/form/FormButton";
+import FormInput from "../../components/form/FormInput";
+import FormButton from "../../components/form/FormButton";
 import axios from 'axios';
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import './RegisterBox.css'
 
-const SignUpForm = () => {
+const RegisterBox = ({ setLoginStatus }: any) => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
-    const navigate = useNavigate();
 
     const handleUsernameChange = (event: React.FormEvent<HTMLInputElement>) => {
         event.preventDefault();
@@ -38,41 +37,39 @@ const SignUpForm = () => {
             email: email,
             password: password
         }, axiosConfig)
-        .then(function (response) {
-            console.log(response);
-            if(response.data.Registered){
-                navigate('/login');
-            } else {
-                alert("No record");
-            }
-            setUsername('');
-            setEmail('');
-            setPassword('');
-        })
-        .catch(function (error){
-            console.log(error);
-        })
+            .then(function (response) {
+                console.log(response);
+                if (response.data.Registered) {
+                    // Add function to open login component
+                } else {
+                    alert("No record");
+                }
+                setUsername('');
+                setEmail('');
+                setPassword('');
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
         event.preventDefault();
     }
 
-    return(
-        <main>
+    return (
+        <div className="loginFormContainer">
             <h1>Sign up</h1>
             <div>
-                <form onSubmit={handleFormSubmit}>
-                    <FormInput onChange={handleUsernameChange}  name="username" type="text" label="Username" placeholder="Username"/>
-                    <FormInput onChange={handleEmailChange} name="email" type="text" label="Email" placeholder="Example@Email.com"/>
-                    <FormInput onChange={handlePasswordChange} name="password" type="password" label="Password" placeholder="***********"/>
+                <form className='authForm' onSubmit={handleFormSubmit}>
+                    <FormInput onChange={handleUsernameChange} name="username" type="text" label="Username" placeholder="Username" />
+                    <FormInput onChange={handleEmailChange} name="email" type="text" label="Email" placeholder="Example@Email.com" />
+                    <FormInput onChange={handlePasswordChange} name="password" type="password" label="Password" placeholder="***********" />
                     <FormButton type="submit">
                         <b>Sign up</b>
                     </FormButton>
+                    <button onClick={() => setLoginStatus('None')}>Close</button>
                 </form>
             </div>
-            <div>
-                <p>Already have a account? <a href="/login"><b>Sign in</b></a></p>
-            </div>
-        </main>
+        </div>
     )
 }
 
-export default SignUpForm;
+export default RegisterBox;

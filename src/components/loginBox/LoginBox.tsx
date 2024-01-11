@@ -1,10 +1,11 @@
-import FormInput from "../components/form/FormInput";
-import FormButton from "../components/form/FormButton";
+import FormInput from "../../components/form/FormInput";
+import FormButton from "../../components/form/FormButton";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import './LoginBox.css'
 
-const LoginForm = () => {
+const LoginBox = ({setLoginStatus}: any) => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -21,9 +22,9 @@ const LoginForm = () => {
         .then(function (response) {
             console.log(response);
             if(response.data.valid){
-                navigate('/');
+                // Show create post
             } else {
-                navigate('/login');
+                // Dont show create post
             }
         })
         .catch(function (error) {
@@ -55,9 +56,9 @@ const LoginForm = () => {
         }, axiosConfig)
         .then(function (response) {
             if(response.data.Login){
-                navigate('/');
+                window.location.reload();
             } else {
-                alert("No record");
+                alert("No user found");
             }
             setPassword('');
             setUsername('');
@@ -69,22 +70,20 @@ const LoginForm = () => {
     }
 
     return(
-        <main>
+        <div className="loginFormContainer">
             <h1>Log in</h1>
             <div>
-                <form onSubmit={handleFormSubmit}>
+                <form className='authForm' onSubmit={handleFormSubmit}>
                     <FormInput onChange={handleUsernameChange}  name="username" type="text" label="Username" placeholder="Username"/>
                     <FormInput onChange={handlePasswordChange} name="password" type="password" label="Password" placeholder="***********"/>
                     <FormButton type="submit">
                         <b>Log-in</b>
                     </FormButton>
+                    <button onClick={() => setLoginStatus('None')}>Close</button>
                 </form>
             </div>
-            <div>
-                <p>Don't have a account? <a href="/register"><b>Sign up</b></a></p>
-            </div>
-        </main>
+        </div>
     )
 }
 
-export default LoginForm;
+export default LoginBox;

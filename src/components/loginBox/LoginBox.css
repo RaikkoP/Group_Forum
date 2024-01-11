@@ -1,0 +1,56 @@
+.loginFormContainer {
+    width: 300px;
+    padding: 50px;
+    height: 400px;
+    z-index: 1;
+    border-radius: 30px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+}
+
+.authForm {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.authForm div {
+    margin-bottom: 15px;
+}
+
+.authForm button {
+    background-color: #0CA14B;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.authForm button:hover {
+    background-color: #00714B;
+}
+
+.authForm div>button {
+    width: 100%;
+}
+
+.authForm label {
+    color: white;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.authForm input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+

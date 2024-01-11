@@ -1,14 +1,16 @@
 import '../style/style.css'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import Header from '../components/header/Header';
+import LoginBox from '../components/loginBox/LoginBox';
+import RegisterBox from '../components/registerBox/RegisterBox';
+import PostForm from '../components/postForm/PostForm';
+import LockedForm from '../components/lockedForm/LockedForm';
 
 const HomePage = () => {
 
-    const navigate = useNavigate();
-
-   
+    const [loginStatus, setLoginStatus] = useState('None');
+    const [validLogin, setValidLogin] = useState(false);
 
     useEffect(() => {
         const axiosConfig = {
@@ -21,24 +23,34 @@ const HomePage = () => {
         .then(function (response) {
             console.log(response);
             if(response.data.valid){
-                console.log(response.data);
+                setValidLogin(true);
             }
             else {
-                // navigate('/login');
+                setValidLogin(false);
             }
         })
         .catch(function (error) {
             console.log(error);
+            setValidLogin(false);
         })
-    }, [navigate])
+    }, [validLogin, setLoginStatus])
 
 
     return (
-        <div>
-            <main>
-                <Header />
-            </main>
-        </div>
+        <>
+            <Header setLoginStatus={setLoginStatus}/>
+            {
+                validLogin ? <PostForm/> : <LockedForm/>
+            }
+            { 
+                loginStatus === 'Login' ? 
+                <LoginBox setLoginStatus={setLoginStatus}/> : null
+            }
+            {
+                loginStatus === 'Register' ?
+                <RegisterBox setLoginStatus={setLoginStatus}/> : null
+            }
+        </>
     );
 };
 
