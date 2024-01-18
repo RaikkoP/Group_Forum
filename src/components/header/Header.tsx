@@ -1,6 +1,13 @@
 import './Header.css';
 
-const Header = ({setLoginStatus}: any) => {
+const Header = ({setLoginStatus, username}: any) => {
+
+    const usernameStyle = {
+        color: 'white',
+        padding: '5px',
+        marginRight: '15px',
+        marginLeft: 'auto'
+    }
 
     return (
         <header className='header'>
@@ -14,10 +21,12 @@ const Header = ({setLoginStatus}: any) => {
                     </form>
                 </search>
             </div>
-            <div className='buttons'>
+            {
+                username != null ? <h3 style={usernameStyle}>{username}</h3> :   <div className='buttons'>
                 <button onClick={() => setLoginStatus('Login')}>Login</button>
                 <button onClick={() => setLoginStatus('Register')}>Register</button>
             </div>
+            }
         </header>
     )
 }

@@ -45,6 +45,10 @@ class User {
                     result("Incorrect Password", res);
                     return;
                 }
+            })
+                .catch(error => {
+                console.log("Error comparing passwords:", error);
+                result("Internal server Issue", null);
             });
         }));
     }

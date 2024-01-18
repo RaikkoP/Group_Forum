@@ -11,14 +11,14 @@ const loginController = {
     User.login(userData, (err, data) => {
       if (err) {
         req.session.authorized = false;
-        res.json({Login: false});
+        return res.json({Login: false});
       }
       if (data) {
         req.session.username = userData.username;
         req.session.authorized = true;
         console.log(req.session.username);
         console.log(req.session.authorized);
-        res.json({Login: true});
+        return res.json({Login: true});
       }
     });
   },

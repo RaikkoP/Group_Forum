@@ -47,6 +47,10 @@ class User {
             return;
           }
         })
+        .catch(error => {
+          console.log("Error comparing passwords:", error);
+          result("Internal server Issue", null);
+        })
     });
   }
 }
