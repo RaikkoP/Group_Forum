@@ -53,15 +53,15 @@ class Post {
     };
 
 
-    //get data from only the posts table
+    //get data from only the postsList table
     static getAllPosts(post: PostInterface, result:(error: ErrorInterface | string | null, data: PostInterface | null) => void) {
-        db.query('SELECT * FROM posts', (err, res) => {
+        db.query('SELECT * FROM postsList', (err, res) => {
             if (err) {
                 console.log("error: ", err);
                 result(err, null);
             } else {
                 post = res;
-                console.log("posts: ", post);
+                console.log("postsList: ", post);
                 result(null, post);
             }
         })

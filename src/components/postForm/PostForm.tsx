@@ -1,4 +1,5 @@
 import './postForm.css';
+import FormButton from "../form/FormButton";
 
 export default function PostForm() {
 
@@ -10,6 +11,9 @@ export default function PostForm() {
             <input name='description'/>
             <label>Post Image</label>
             <input type='file'/>
+            <FormButton type="submit">
+                <b>Post</b>
+            </FormButton>
         </form>
     )
 }
