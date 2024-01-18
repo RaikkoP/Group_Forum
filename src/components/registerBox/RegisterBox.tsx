@@ -40,7 +40,7 @@ const RegisterBox = ({ setLoginStatus }: any) => {
             .then(function (response) {
                 console.log(response);
                 if (response.data.Registered) {
-                    // Add function to open login component
+                    setLoginStatus('Login');
                 } else {
                     alert("No record");
                 }

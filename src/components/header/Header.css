@@ -1,50 +1,18 @@
 .header {
     display: flex;
     align-items: center;
-    width: 100vw;
+    width: 100%;
     border-bottom: 3px solid rgb(28, 28, 28);
     background-color: rgb(33, 33, 33);
 }
 .title {
-    width: 10%;
+    width: 200px;
     color: rgb(255, 255, 255);
     margin-left: 11px;
 }
-.tags {
-    width: 15%;
-}
-.tags-dropdown-menu {
-    position: relative;
-}
-.tags-dropdown-content {
-    position: absolute;
-    width: 100%;
-    color: white;
-    left: 0;
-    top: calc(100% + .25rem);
-    background-color: rgb(48, 48, 48);
-    padding: .75rem;
-    border-radius: .25rem;
-    box-shadow: 0 3px 15px 0 rgba(255, 255, 255, 0.1);
-    opacity: 0;
-    transition: opacity 150ms ease-in-out;
-}
-.tags-dropdown-content form {
-    padding: 10px;
-    border-bottom: 2px solid rgb(74, 74, 74);
-}
-.tags-dropdown-content-active {
-    opacity: 1;
-}
-.tags h2{
-    color: white;
-    text-align: center;
-}
-.tags h2:hover{
-    cursor: pointer;
-}
+
 .search {
-    width: 90%;
+    width: 600px;
     display: flex;
     justify-content: center;
     align-items: center;

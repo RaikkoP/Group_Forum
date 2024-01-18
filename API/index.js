@@ -21,8 +21,8 @@ app.use((0, cors_1.default)({
 app.use((0, express_session_1.default)({
     secret: process.env.SECRET_KEYS || "secret",
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false, maxAge: 24 * 60 * 60 * 1000 }
+    saveUninitialized: false,
+    cookie: { secure: false, maxAge: 24 * 60 * 60 * 1000, sameSite: false },
 }));
 // Import routes 
 // import userRoutes from './routes/user';
