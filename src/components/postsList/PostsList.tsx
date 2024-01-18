@@ -7,7 +7,7 @@ export default function PostsList() {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        axios.get('')
+        axios.get('http://localhost:4000/posts')
             .then(response => {
                 setPosts(response.data);
             })
@@ -23,7 +23,7 @@ export default function PostsList() {
             <ul>
                 {posts.map((post) => (
                     <li key={post.id}>
-                        <Link to={`/${post.slug}`} className="postLink">
+                        <Link to={`/${post.id}`} className="postLink">
                             <img src={post.image} alt={`Thumbnail for ${post.title}`} className="postImage" />
                             <h3>{post.title}</h3>
                             <p>{post.published}</p>

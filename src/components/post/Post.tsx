@@ -3,19 +3,19 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-export default function Post(){
-    const { slug } = useParams();
-    const [post, setPost] = useState(null);
+export default function Post(id){
+    const { id } = useParams();
+    const [post, setPost] = useState([]);
 
     useEffect(() => {
-        axios.get(`/${slug}`)
+        axios.get(`http://localhost:4000/posts/${id}`, axiosConfig)
             .then(response => {
                 setPost(response.data);
             })
             .catch(error => {
                 console.error('Error fetching post:', error);
             });
-    }, [slug]);
+    }, [])
 
 
     return (

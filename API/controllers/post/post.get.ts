@@ -26,3 +26,5 @@ const getController = {
 
     },
 }
+
+export default getController;
