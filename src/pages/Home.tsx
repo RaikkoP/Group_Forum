@@ -6,6 +6,7 @@ import LoginBox from '../components/loginBox/LoginBox';
 import RegisterBox from '../components/registerBox/RegisterBox';
 import PostForm from '../components/postForm/PostForm';
 import LockedForm from '../components/lockedForm/LockedForm';
+import PostsList from "../components/postsList/PostsList";
 
 const HomePage = () => {
 
@@ -45,6 +46,10 @@ const HomePage = () => {
             {
                 validLogin ? <PostForm/> : <LockedForm/>
             }
+            {
+                validLogin ? <PostsList/> : null
+            }
+
             { 
                 loginStatus === 'Login' ? 
                 <LoginBox setLoginStatus={setLoginStatus}/> : null
