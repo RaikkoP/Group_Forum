@@ -1,6 +1,8 @@
 import { MysqlError } from "mysql";
 import db from "../../utility/database";
 import bcrypt = require("bcryptjs");
+import regexConfig from '../../utility/regex_configuration';
+
 
 type UserInterface = {
   username: string;
@@ -22,10 +24,10 @@ class User {
   static register(user: UserInterface, result: (error: MysqlError | string | null, data: UserInterface | null) => void) {
     //Check inputs with regex
     console.log(user.username, user.password);
-    // if(!regex.userRegEx.test(user.username) || !regex.passwordRegEx.test(user.password)){
-    //   result("Failed to login", null);
-    //   return;
-    // }
+    if(!regexConfig.userRegEx.test(user.username) || !regexConfig.passwordRegEx.test(user.password)){
+      result("Failed to login", null);
+      return;
+    }
     //Username check
     //Check if username or email exists in db
     db.query('SELECT username FROM users WHERE username = ? or email = ?', [user.username, user.email], (err, res) => {

@@ -1,7 +1,8 @@
 import express from "express";
 import cors from "cors";
 import session from 'express-session';
-import dotenv from 'dotenv'; 
+import dotenv from 'dotenv';
+
 dotenv.config();
 const app = express();
 
@@ -19,8 +20,8 @@ app.use(cors({
 app.use(session({
   secret: process.env.SECRET_KEYS || "secret",
   resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false, maxAge: 24 * 60 * 60 * 1000 } 
+  saveUninitialized: false,
+  cookie: { secure: false, maxAge: 24 * 60 * 60 * 1000, sameSite: false },
 }));
 
 // Import routes 
