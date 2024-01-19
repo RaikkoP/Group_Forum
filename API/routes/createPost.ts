@@ -1,8 +1,8 @@
 import express = require('express');
-import getController from '../controllers/post/post.get';
+import createController from '../controllers/post/post.create';
 const router = express.Router();
 router.use(express.json());
 
-router.post('/create', getController.getPost);
+router.post('/create', createController.createPost);
 
 export default router;

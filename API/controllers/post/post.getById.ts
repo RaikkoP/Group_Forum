@@ -1,8 +1,8 @@
 import { Response, Request } from 'express';
-import Post from '../../models/post/post.create.model';
+import Post from '../../models/post/post.getById.model';
 
-const createController = {
-    createPost: async (req: Request, res: Response) => {
+const getByIdController = {
+    getPostById: async (req: Request, res: Response) => {
         const postData = new Post({
             id: req.body.id,
             title: req.body.id,
@@ -15,16 +15,18 @@ const createController = {
             author: req.body.author,
         });
         
-        Post.createNewPost(postData, (err, data) => {
+        Post.getPostById(postData, (err, data) => {
             if (err) {
-                res.json({Created: false})
-              } 
-              if (data) {
-                res.json({Created: true})
-              }
+                res.json({Found: false})
+                throw err;
+            }
+            if (data) {
+                res.json({Found: true})
+                return data;
+            }
         });
 
     },
 }
 
-export default createController;
+export default getByIdController;

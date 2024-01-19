@@ -17,9 +17,11 @@ const getController = {
         
         Post.getAllPosts(postData, (err, data) => {
             if (err) {
+                res.json({Found: false})
                 throw err;
             }
             if (data) {
+                res.json({Found: true})
                 return data;
             }
         });

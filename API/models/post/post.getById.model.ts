@@ -42,16 +42,17 @@ class Post {
 
 
     //get data from only the postsList table
-    static getAllPosts(post: PostInterface, result:(error: ErrorInterface | string | null, data: PostInterface | null) => void) {
+    static getPostById(post: PostInterface, result:(error: ErrorInterface | string | null, data: PostInterface | null) => void) {
         db.query(`SELECT posts.id, posts.title, posts.slug, posts.body, posts.published, images.image AS image, users.username AS author FROM posts 
                 INNER JOIN images ON posts.image_id=images.id 
-                INNER JOIN users on users.id=posts.author_id`, (err, res) => {
+                INNER JOIN users on users.id=posts.author_id
+                WHERE id = ?`,[post.id], (err, res) => {
             if (err) {
                 console.log("error: ", err);
                 result(err, null);
             } else {
                 post = res;
-                console.log("posts: ", post);
+                console.log("post: ", post);
                 result(null, post);
             }
         })
