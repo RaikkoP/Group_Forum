@@ -1,4 +1,5 @@
 import '../style/style.css'
+import './Home.css'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Header from '../components/header/Header';
@@ -13,6 +14,7 @@ const HomePage = () => {
     const [loginStatus, setLoginStatus] = useState('None');
     const [validLogin, setValidLogin] = useState(false);
     const [username, setUsername] = useState(null);
+    const [showForm, setShowForm] = useState(false);
 
     useEffect(() => {
         const axiosConfig = {
@@ -44,7 +46,10 @@ const HomePage = () => {
         <>
             <Header username={username} setLoginStatus={setLoginStatus}/>
             {
-                validLogin ? <PostForm/> : <LockedForm/>
+                showForm && validLogin ? <PostForm/> : <LockedForm/>
+            }
+            {
+                !showForm ? <div className='formStatusButton'><button onClick={() => setShowForm(!showForm)}>Show Form</button></div> : <div className='formStatusButton'><button onClick={() => setShowForm(!showForm)}>Close Form</button></div>
             }
             {
                 validLogin ? <PostsList/> : null
