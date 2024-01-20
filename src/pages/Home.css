@@ -1,0 +1,12 @@
+.formStatusButton {
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formStatusButton button {
+    padding: 10px;
+    font-size: 18px;
+}

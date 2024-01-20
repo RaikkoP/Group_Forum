@@ -9,6 +9,11 @@ const Header = ({setLoginStatus, username}: any) => {
         marginLeft: 'auto'
     }
 
+    const buttonStyle = {
+        marginRight: '15px',
+        marginLeft: 'auto'
+    }
+
     return (
         <header className='header'>
             <div className='title'>
@@ -22,7 +27,7 @@ const Header = ({setLoginStatus, username}: any) => {
                 </search>
             </div>
             {
-                username != null ? <h3 style={usernameStyle}>{username}</h3> :   <div className='buttons'>
+                username != null ? <h3 style={usernameStyle}>{username}</h3> :   <div style={buttonStyle} className='buttons'>
                 <button onClick={() => setLoginStatus('Login')}>Login</button>
                 <button onClick={() => setLoginStatus('Register')}>Register</button>
             </div>

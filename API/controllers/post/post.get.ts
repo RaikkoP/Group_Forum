@@ -6,10 +6,8 @@ const getController = {
         const postData = new Post({
             id: req.body.id,
             title: req.body.id,
-            slug: req.body.slug,
             body: req.body.body,
             published: req.body.published,
-            image_id: req.body.image_id,
             image: req.body.image,
             author_id: req.body.author_id,
             author: req.body.author,

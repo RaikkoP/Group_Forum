@@ -4,10 +4,8 @@ import db from "../../utility/database";
 interface PostInterface {
     id: number;
     title: string; 
-    slug: string;
     body: string;
     published: string;
-    image_id: number;
     image: string;
     author_id: number;
     author: string;
@@ -20,21 +18,17 @@ interface ErrorInterface {
 class Post {
     id: number;
     title: string;
-    slug: string;
     body: string;
     published: string;
-    image_id: number;
     image: string;
     author_id: number;
     author: string;
 
-    constructor({id, title, slug, body, published, image_id, image, author_id, author}: PostInterface) {
+    constructor({id, title, body, published, image, author_id, author}: PostInterface) {
         this.id = id;
         this.title = title;
-        this.slug = slug;
         this.body = body;
         this.published = published;
-        this.image_id = image_id;
         this.image = image;
         this.author_id = author_id;
         this.author = author;
