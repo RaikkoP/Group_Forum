@@ -15,6 +15,7 @@ const HomePage = () => {
     const [validLogin, setValidLogin] = useState(false);
     const [username, setUsername] = useState(null);
     const [showForm, setShowForm] = useState(false);
+    const [userId, setUserId] = useState<string | undefined>(undefined);
 
     useEffect(() => {
         const axiosConfig = {
@@ -29,7 +30,8 @@ const HomePage = () => {
             if(response.data.valid){
                 setValidLogin(true);
                 setLoginStatus('None');
-                setUsername(response.data.user_info)
+                setUsername(response.data.user_info);
+                setUserId(response.data.userId);
             }
             else {
                 setValidLogin(false);
@@ -45,16 +47,8 @@ const HomePage = () => {
     return (
         <>
             <Header username={username} setLoginStatus={setLoginStatus}/>
-            {
-                showForm && validLogin ? <PostForm/> : <LockedForm/>
-            }
-            {
-                !showForm ? <div className='formStatusButton'><button onClick={() => setShowForm(!showForm)}>Show Form</button></div> : <div className='formStatusButton'><button onClick={() => setShowForm(!showForm)}>Close Form</button></div>
-            }
-            {
-                validLogin ? <PostsList/> : null
-            }
-
+            <PostForm userId={userId}/>
+            <PostsList/>
             { 
                 loginStatus === 'Login' ? 
                 <LoginBox setLoginStatus={setLoginStatus}/> : null
