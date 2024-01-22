@@ -12,25 +12,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const user_register_model_1 = __importDefault(require("../../models/user/user.register.model"));
-const registerController = {
-    registerUser: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        console.log(req.body, "From registerUser");
-        const userData = new user_register_model_1.default({
-            username: req.body.username,
-            password: req.body.password,
-            email: req.body.email,
+const post_create_model_1 = __importDefault(require("../../models/post/post.create.model"));
+const createController = {
+    createPost: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        const postData = new post_create_model_1.default({
+            id: req.body.id,
+            title: req.body.id,
+            body: req.body.body,
+            image_id: req.body.image_id,
+            author_id: req.body.author_id,
         });
-        user_register_model_1.default.register(userData, (err, data) => {
+        post_create_model_1.default.createNewPost(postData, (err, data) => {
             if (err) {
-                console.log("Register failed");
-                res.json({ Registered: false });
+                res.json({ Created: false });
             }
             if (data) {
-                console.log("Register success");
-                res.json({ Registered: true });
+                res.json({ Created: true });
             }
         });
     }),
 };
-exports.default = registerController;
+exports.default = createController;

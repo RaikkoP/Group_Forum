@@ -2,6 +2,8 @@ import { MysqlError } from "mysql";
 import db from "../../utility/database";
 import bcrypt = require("bcryptjs");
 import regexConfig from '../../utility/regex_configuration';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 type UserInterface = {
   username: string;
@@ -17,6 +19,7 @@ class User {
   username: string;
   password: string;
   email: string | undefined;
+  id: number | undefined;
 
   constructor({ username, password, email }: UserInterface) {
     this.username = username;

@@ -20,6 +20,7 @@ const loginController = {
             password: req.body.password,
         });
         user_login_model_1.default.login(userData, (err, data) => {
+            var _a;
             if (err) {
                 req.session.authorized = false;
                 return res.json({ Login: false });
@@ -27,9 +28,16 @@ const loginController = {
             if (data) {
                 req.session.username = userData.username;
                 req.session.authorized = true;
-                console.log(req.session.username);
-                console.log(req.session.authorized);
-                return res.json({ Login: true });
+                req.session.userId = ((_a = userData.id) === null || _a === void 0 ? void 0 : _a.toString()) || "";
+                req.session.save((err) => {
+                    if (err) {
+                        console.log('Error saving session: ', err);
+                        return res.json({ Login: false });
+                    }
+                    console.log(req.session.username);
+                    console.log(req.session.authorized);
+                    return res.json({ Login: true });
+                });
             }
         });
     }),

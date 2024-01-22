@@ -1,7 +1,6 @@
 import './PostsList.css';
 import { useState, useEffect } from 'react';
 import axios from "axios";
-import {Link} from "react-router-dom";
 
 type postInterface = {
     id: number,
@@ -23,9 +22,15 @@ export default function PostsList() {
     };
 
     useEffect(() => {
-        axios.get('http://localhost:4000/posts', axiosConfig)
+        axios.get('http://localhost:4000/post/get', axiosConfig)
             .then(response => {
-                setPosts(response.data);
+                if (Array.isArray(response.data)) {
+                    console.log(response)
+                    setPosts(response.data);
+                } else {
+                    console.error('Expected an array but received:', response.data);
+                    setPosts([]);
+                }
              })
             .catch(error => {
                 console.error('Error fetching postsList:', error);
@@ -39,12 +44,10 @@ export default function PostsList() {
             <ul>
                 {posts?.map((post) => (
                     <li key={post.id}>
-                        <Link to={`/${post.id}`} className="postLink">
-                            <img src={post.image} alt={`Thumbnail for ${post.title}`} className="postImage" />
+                            <img src={`http://localhost:4000/posts/image/${post.image}`} alt={`Thumbnail for ${post.title}`} className="postImage" />
                             <h3>{post.title}</h3>
                             <p>{post.published}</p>
                             <p>{post.body.substring(0, 100)}...</p>
-                        </Link>
                     </li>
                 ))}
             </ul>

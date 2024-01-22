@@ -7,7 +7,6 @@ const getController = {
             id: req.body.id,
             title: req.body.id,
             body: req.body.body,
-            published: req.body.published,
             image: req.body.image,
             author_id: req.body.author_id,
             author: req.body.author,
@@ -15,11 +14,13 @@ const getController = {
         
         Post.getAllPosts(postData, (err, data) => {
             if (err) {
+                console.log(err);
                 res.json({Found: false})
                 throw err;
             }
             if (data) {
-                res.json({Found: true})
+                console.log(data);
+                res.json(data)
                 return data;
             }
         });

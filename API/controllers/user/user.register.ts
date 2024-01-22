@@ -13,9 +13,11 @@ const registerController = {
 
     User.register(userData, (err, data) => {
       if (err) {
+        console.log("Register failed")
         res.json({Registered: false})
       } 
       if (data) {
+        console.log("Register success")
         res.json({Registered: true})
       }
     });
